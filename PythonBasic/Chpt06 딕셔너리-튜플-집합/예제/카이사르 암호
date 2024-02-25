@@ -1,0 +1,93 @@
+src_str = "ABCDEFGHIJKLMOPQRSTUVWXYZ"
+dst_src = "DEFGHIJKLMNOPQRSTUVWXYZABC"
+
+
+def cipher(a):
+    src_str_tup = tuple(src_str)
+    dst_src_tup = tuple(dst_src)
+    if a in src_str_tup:
+        print("src_str의 {} 인덱스: {}".format(a,src_str_tup.index(a)))
+        print("dst_src의 {}번째 알파벳: {}".format(src_str_tup.index(a),dst_src_tup[src_str_tup.index(a)]))
+
+
+
+
+
+a1 = str(input(">>"))
+
+cipher(a1)
+
+-----------------------------------------------------------------------------------------------------------------------
+#encrypt
+
+src_str = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+dst_src = "DEFGHIJKLMNOPQRSTUVWXYZABC"
+
+
+def cipher(a):
+    src_str_tup = tuple(src_str)
+    dst_src_tup = tuple(dst_src)
+
+    a1 = tuple(a)
+    result =""
+    for i in a1:
+        if i in src_str_tup:
+            b = src_str_tup.index(i)
+            result += dst_src_tup[b]
+        if i not in src_str_tup:
+            result += i
+
+    return result
+
+
+print(cipher("ATTACK TONIGHT!"))
+
+-----------------------------------------------------------------------------------------------------------------------------
+#decrypt
+
+src_str = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+dst_src = "DEFGHIJKLMNOPQRSTUVWXYZABC"
+
+
+def cipher(a):
+    src_str_tup = tuple(src_str)
+    dst_src_tup = tuple(dst_src)
+
+    a1 = tuple(a)
+    result =""
+    for i in a1:
+        if i == " ":
+            result += " "
+        elif i in dst_src_tup:
+            result += src_str_tup[dst_src_tup.index(i)]
+        if i not in a1:
+            result += i
+
+    return result
+
+
+
+print(cipher("DWWDFN WRQLJKW!"))
+
+------------------------------------------------------------------------------------------------------------------------------
+
+# encrypt - lower(), upper() convert version
+
+def cipher(a):
+    src_str = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    dst_src = "DEFGHIJKLMNOPQRSTUVWXYZABC"
+
+    result = ""
+    for char in a:
+        if char.isupper():  # 대문자인 경우
+            index = src_str.find(char)
+            result += dst_src[index]
+        elif char.islower():  # 소문자인 경우
+            index = src_str.lower().find(char)
+            result += dst_src[index].lower()
+        else:  # 대소문자가 아닌 경우 (특수문자 등)
+            result += char
+
+    return result
+
+print(cipher("Vendi, vidi, vici"))
